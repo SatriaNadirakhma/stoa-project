@@ -1,0 +1,87 @@
+---
+// Download.astro — Download CTA section with arch SVG bookend
+import Arch from './Arch.astro';
+---
+
+<section id="download" class="relative section-gap bg-stoa-bg overflow-hidden text-center">
+  <!-- Radial gradient background -->
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at center, rgba(168, 146, 104, 0.06) 0%, transparent 70%);"></div>
+
+  <!-- Arch SVG at lower opacity -->
+  <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none opacity-[0.08]">
+    <div class="w-[min(500px,60vw)] h-[min(600px,60vh)]">
+      <Arch />
+    </div>
+  </div>
+
+  <div class="container-stoa relative z-10">
+    <!-- Section Label -->
+    <p class="inline-flex items-center gap-sm text-caption font-body font-medium uppercase tracking-[0.12em] text-stoa-accent mb-xl">
+      <span class="block w-4 h-px bg-stoa-accent"></span>
+      Get Stoa
+    </p>
+
+    <!-- Title -->
+    <h2 class="font-display font-light text-display mb-lg max-w-[700px] mx-auto">
+      Your sanctuary<br />awaits.
+    </h2>
+
+    <!-- Subheadline -->
+    <p class="font-body font-light text-[18px] leading-relaxed text-stoa-muted max-w-[460px] mx-auto mb-3xl">
+      Free for macOS. Built for humans who want to do their best work — quietly.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div data-animate class="mb-lg">
+      <a
+        href="#"
+        id="download-cta"
+        class="inline-flex items-center gap-sm font-body font-medium text-sm tracking-[0.02em] bg-stoa-accent text-stoa-bg rounded-full px-[36px] py-[14px] hover:brightness-110 hover:-translate-y-px transition-all duration-200"
+      >
+        <span class="text-base">&#8595;</span> Download for macOS
+        <span class="font-normal text-stoa-accent-dim">— Free</span>
+      </a>
+      <p class="font-body font-light text-[13px] text-stoa-dim mt-md">
+        macOS 14.0 or later · No account required · Works offline
+      </p>
+    </div>
+
+    <!-- Social Proof -->
+    <div class="mt-2xl pt-2xl border-t border-stoa-border">
+      <blockquote class="max-w-[400px] mx-auto">
+        <p class="font-display font-light italic text-[18px] text-stoa-muted mb-md">
+          &ldquo;Finally, a to-do app I actually want to open.&rdquo;
+        </p>
+        <cite class="block font-body font-normal text-sm text-stoa-dim not-italic mb-lg">
+          &mdash; Early access user
+        </cite>
+      </blockquote>
+      <div class="flex items-center justify-center gap-sm mb-sm">
+        <div class="w-7 h-7 rounded-full bg-stoa-surface2 border border-stoa-border"></div>
+        <div class="w-7 h-7 rounded-full bg-stoa-surface2 border border-stoa-border -ml-2"></div>
+        <div class="w-7 h-7 rounded-full bg-stoa-surface2 border border-stoa-border -ml-2"></div>
+      </div>
+      <p class="font-body font-light text-xs text-stoa-dim">+200 people on the waitlist</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Pulse animation on CTA when it enters viewport
+  const cta = document.getElementById('download-cta');
+
+  if (cta && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            cta.style.animation = 'pulseOnce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            observer.unobserve(cta);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(cta);
+  }
+</script>

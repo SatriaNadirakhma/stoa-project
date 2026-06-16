@@ -1,0 +1,104 @@
+---
+// Comparison.astro — Comparison table vs competitors
+---
+
+<section id="comparison" class="relative section-gap bg-stoa-bg">
+  <div class="container-stoa">
+    <!-- Section Label -->
+    <p class="inline-flex items-center gap-sm text-caption font-body font-medium uppercase tracking-[0.12em] text-stoa-accent mb-xl">
+      <span class="block w-4 h-px bg-stoa-accent"></span>
+      Why Stoa
+    </p>
+
+    <!-- Title -->
+    <h2 class="font-display font-normal text-title max-w-[480px] mb-lg">
+      Not another<br />task manager.
+    </h2>
+
+    <!-- Body -->
+    <p class="font-body font-light text-[17px] leading-relaxed text-stoa-muted max-w-[480px] mb-3xl">
+      The difference isn't features — it's philosophy.
+      Stoa is built around what you remove, not what you add.
+    </p>
+
+    <!-- Comparison Table -->
+    <div class="overflow-x-auto">
+      <table data-animate class="w-full bg-stoa-surface border border-stoa-border rounded-[20px] overflow-hidden">
+        <thead>
+          <tr class="border-b border-stoa-border">
+            <th class="text-left p-lg font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-muted">Feature</th>
+            <th class="p-lg font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-accent bg-stoa-accent/5">Stoa</th>
+            <th class="p-lg font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-muted">Notion</th>
+            <th class="p-lg font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-muted">Todoist</th>
+            <th class="p-lg font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-muted">Reminders</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-stoa-border hover:bg-white/[0.02] transition-colors">
+            <td class="p-lg font-body font-light text-sm text-stoa-text">Daily 5-task limit</td>
+            <td class="p-lg text-center font-body font-semibold text-stoa-accent text-[16px]">✦</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+          </tr>
+          <tr class="border-b border-stoa-border hover:bg-white/[0.02] transition-colors">
+            <td class="p-lg font-body font-light text-sm text-stoa-text">Built-in Focus + Pomodoro</td>
+            <td class="p-lg text-center font-body font-semibold text-stoa-accent text-[16px]">✦</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+          </tr>
+          <tr class="border-b border-stoa-border hover:bg-white/[0.02] transition-colors">
+            <td class="p-lg font-body font-light text-sm text-stoa-text">Evening reflection ritual</td>
+            <td class="p-lg text-center font-body font-semibold text-stoa-accent text-[16px]">✦</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+          </tr>
+          <tr class="border-b border-stoa-border hover:bg-white/[0.02] transition-colors">
+            <td class="p-lg font-body font-light text-sm text-stoa-text">Natural language task input</td>
+            <td class="p-lg text-center font-body font-semibold text-stoa-accent text-[16px]">✦</td>
+            <td class="p-lg text-center text-stoa-muted text-[16px]">◐</td>
+            <td class="p-lg text-center font-body font-semibold text-stoa-accent text-[16px]">✦</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+          </tr>
+          <tr class="border-b border-stoa-border hover:bg-white/[0.02] transition-colors">
+            <td class="p-lg font-body font-light text-sm text-stoa-text">Energy-based task sorting</td>
+            <td class="p-lg text-center font-body font-semibold text-stoa-accent text-[16px]">✦</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+          </tr>
+          <tr class="border-b border-stoa-border hover:bg-white/[0.02] transition-colors">
+            <td class="p-lg font-body font-light text-sm text-stoa-text">Keyboard-first macOS design</td>
+            <td class="p-lg text-center font-body font-semibold text-stoa-accent text-[16px]">✦</td>
+            <td class="p-lg text-center text-stoa-muted text-[16px]">◐</td>
+            <td class="p-lg text-center text-stoa-muted text-[16px]">◐</td>
+            <td class="p-lg text-center text-stoa-muted text-[16px]">◐</td>
+          </tr>
+          <tr class="border-b border-stoa-border hover:bg-white/[0.02] transition-colors">
+            <td class="p-lg font-body font-light text-sm text-stoa-text">Minimalist, distraction-free UI</td>
+            <td class="p-lg text-center font-body font-semibold text-stoa-accent text-[16px]">✦</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-muted text-[16px]">◐</td>
+            <td class="p-lg text-center font-body font-semibold text-stoa-accent text-[16px]">✦</td>
+          </tr>
+          <tr class="hover:bg-white/[0.02] transition-colors">
+            <td class="p-lg font-body font-light text-sm text-stoa-text">Philosophy-driven productivity</td>
+            <td class="p-lg text-center font-body font-semibold text-stoa-accent text-[16px]">✦</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+            <td class="p-lg text-center text-stoa-dim text-[16px]">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Legend -->
+    <div class="flex items-center gap-lg mt-lg text-stoa-dim">
+      <span class="font-body font-normal text-xs">✦ Full support</span>
+      <span class="font-body font-normal text-xs">◐ Partial</span>
+      <span class="font-body font-normal text-xs">— Not supported</span>
+    </div>
+  </div>
+</section>
