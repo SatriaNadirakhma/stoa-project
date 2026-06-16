@@ -1,0 +1,130 @@
+---
+// Navbar.astro — Fixed top navigation with blur-on-scroll
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 h-[60px] flex items-center transition-all duration-300"
+>
+  <div class="container-stoa w-full flex items-center justify-between">
+    <!-- Left: Logo -->
+    <a href="#" class="flex items-center gap-sm">
+      <span class="text-[22px] font-display font-normal text-stoa-text leading-none">
+        Stoa
+      </span>
+      <span
+        class="text-mono text-stoa-dim border border-stoa-border rounded-sm px-1.5 py-px text-[11px] leading-none"
+      >
+        macOS
+      </span>
+    </a>
+
+    <!-- Center: Nav links (desktop) -->
+    <nav class="hidden md:flex items-center gap-xl">
+      <a href="#features" class="text-sm font-body font-normal text-stoa-muted hover:text-stoa-text transition-colors duration-150">
+        Features
+      </a>
+      <a href="#how-it-works" class="text-sm font-body font-normal text-stoa-muted hover:text-stoa-text transition-colors duration-150">
+        How It Works
+      </a>
+      <a href="#preview" class="text-sm font-body font-normal text-stoa-muted hover:text-stoa-text transition-colors duration-150">
+        Preview
+      </a>
+      <a href="#download" class="text-sm font-body font-normal text-stoa-muted hover:text-stoa-text transition-colors duration-150">
+        Download
+      </a>
+    </nav>
+
+    <!-- Right: CTAs (desktop) -->
+    <div class="hidden md:flex items-center gap-sm">
+      <a
+        href="#download"
+        class="text-sm font-body font-normal text-stoa-text border border-stoa-border-light rounded-full px-md py-2 hover:border-stoa-accent-dim hover:text-stoa-accent transition-all duration-200"
+      >
+        Sign up for early access
+      </a>
+      <a
+        href="#download"
+        class="text-sm font-body font-medium bg-stoa-accent text-stoa-bg rounded-full px-lg py-2 hover:brightness-110 hover:-translate-y-px transition-all duration-200"
+      >
+        Download for free
+      </a>
+    </div>
+
+    <!-- Mobile: Hamburger button -->
+    <button
+      id="hamburger"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="Toggle menu"
+    >
+      <span class="block w-5 h-px bg-stoa-text transition-transform duration-200"></span>
+      <span class="block w-5 h-px bg-stoa-text transition-opacity duration-200"></span>
+      <span class="block w-5 h-px bg-stoa-text transition-transform duration-200"></span>
+    </button>
+  </div>
+
+  <!-- Mobile: Full-screen overlay menu -->
+  <div
+    id="mobile-menu"
+    class="hidden fixed inset-0 bg-stoa-bg/95 backdrop-blur-xl flex flex-col items-center justify-center gap-2xl z-40"
+  >
+    <nav class="flex flex-col items-center gap-xl">
+      <a href="#features" class="text-lead font-body text-stoa-muted hover:text-stoa-text transition-colors">Features</a>
+      <a href="#how-it-works" class="text-lead font-body text-stoa-muted hover:text-stoa-text transition-colors">How It Works</a>
+      <a href="#preview" class="text-lead font-body text-stoa-muted hover:text-stoa-text transition-colors">Preview</a>
+      <a href="#download" class="text-lead font-body text-stoa-muted hover:text-stoa-text transition-colors">Download</a>
+    </nav>
+    <div class="flex flex-col items-center gap-md mt-xl">
+      <a
+        href="#download"
+        class="text-sm font-body text-stoa-text border border-stoa-border-light rounded-full px-lg py-sm"
+      >
+        Sign up for early access
+      </a>
+      <a
+        href="#download"
+        class="text-sm font-body font-medium bg-stoa-accent text-stoa-bg rounded-full px-lg py-sm"
+      >
+        Download for free
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const navbar = document.getElementById('navbar')!;
+  const hamburger = document.getElementById('hamburger')!;
+  const menu = document.getElementById('mobile-menu')!;
+  let menuOpen = false;
+
+  // Scroll blur
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar.style.background = 'rgba(8, 8, 8, 0.85)';
+      navbar.style.backdropFilter = 'blur(20px) saturate(180%)';
+      navbar.style.borderBottom = '1px solid var(--color-stoa-border)';
+    } else {
+      navbar.style.background = 'transparent';
+      navbar.style.backdropFilter = 'none';
+      navbar.style.borderBottom = 'none';
+    }
+  }, { passive: true });
+
+  // Mobile menu toggle
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    menu.classList.toggle('hidden', !menuOpen);
+    menu.classList.toggle('flex', menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+
+  // Close menu on link click
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      document.body.style.overflow = '';
+    });
+  });
+</script>

@@ -1,0 +1,118 @@
+---
+// Hero.astro — Full-screen hero with arch SVG, headline, and staggered entrance
+import Arch from './Arch.astro';
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-stoa-bg">
+  <!-- Arch SVG background -->
+  <div
+    class="hero-arch absolute inset-0 flex items-center justify-center z-0"
+    style="opacity: 0; animation: archFadeIn 1000ms var(--ease-out-expo) forwards;"
+  >
+    <div class="w-[min(600px,80vw)] h-[min(700px,80vh)] relative opacity-[0.18] max-sm:opacity-[0.08]">
+      <Arch />
+    </div>
+  </div>
+
+  <!-- Hero content -->
+  <div class="container-stoa relative z-10 text-center max-w-[900px]">
+    <!-- Eyebrow -->
+    <p
+      class="hero-item inline-flex items-center gap-sm text-caption font-body font-medium uppercase tracking-[0.12em] text-stoa-accent mb-xl"
+      style="opacity: 0; animation: fadeUp 0.6s var(--ease-out-expo) 0.2s forwards;"
+    >
+      <span class="block w-4 h-px bg-stoa-accent"></span>
+      For those who think deeply and work quietly
+    </p>
+
+    <!-- Headline -->
+    <h1 class="hero-item text-display font-display text-stoa-text mb-lg max-sm:text-[48px]">
+      <span
+        style="display: block; opacity: 0; animation: fadeUp 0.6s var(--ease-out-expo) 0.35s forwards;"
+      >
+        Your mind,
+      </span>
+      <span
+        style="display: block; opacity: 0; animation: fadeUp 0.6s var(--ease-out-expo) 0.45s forwards;"
+      >
+        finally quiet.
+      </span>
+    </h1>
+
+    <!-- Subheadline -->
+    <p
+      class="hero-item text-lead font-body text-stoa-muted max-w-[520px] mx-auto mb-2xl"
+      style="opacity: 0; animation: fadeUp 0.6s var(--ease-out-expo) 0.6s forwards;"
+    >
+      Stoa is a sanctuary for laptop workers who are tired of managing
+      their task manager. Choose five. Do the work. Rest.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div
+      class="hero-item flex items-center justify-center gap-md max-sm:flex-col"
+      style="opacity: 0; animation: fadeUp 0.6s var(--ease-out-expo) 0.75s forwards;"
+    >
+      <a
+        href="#download"
+        class="inline-flex items-center gap-sm text-sm font-body font-medium bg-stoa-accent text-stoa-bg rounded-full px-[28px] py-[12px] hover:brightness-110 hover:-translate-y-px transition-all duration-200"
+      >
+        Download for macOS
+        <span class="text-stoa-accent-dim font-normal">— free</span>
+      </a>
+      <a
+        href="#how-it-works"
+        class="inline-flex items-center gap-sm text-sm font-body font-normal text-stoa-text border border-stoa-border-light rounded-full px-[24px] py-[11px] hover:border-stoa-accent-dim hover:text-stoa-accent transition-all duration-200"
+      >
+        See how it works &darr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-sm"
+    style="opacity: 0; animation: fadeUp 0.6s var(--ease-out-expo) 0.9s forwards;"
+  >
+    <div class="w-px h-8 bg-stoa-dim animate-pulse"></div>
+    <span class="text-caption font-body text-stoa-dim uppercase tracking-[0.1em]">Scroll</span>
+  </div>
+</section>
+
+<style>
+  @keyframes archFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .hero-arch {
+    will-change: transform;
+  }
+</style>
+
+<script>
+  // Mouse parallax on arch
+  const archContainer = document.querySelector('.hero-arch') as HTMLElement;
+  if (archContainer) {
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      targetX = x * 4;
+      targetY = y * 4;
+    });
+
+    function animate() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      archContainer.style.transform = `translate(${currentX}px, ${currentY}px)`;
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  }
+</script>
