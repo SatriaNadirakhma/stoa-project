@@ -1,0 +1,172 @@
+---
+// Features.astro — 5 features in alternating layout
+---
+
+<section id="features" class="relative section-gap bg-stoa-bg">
+  <div class="container-stoa">
+    <!-- Section Label -->
+    <p class="inline-flex items-center gap-sm text-caption font-body font-medium uppercase tracking-[0.12em] text-stoa-accent mb-xl">
+      <span class="block w-4 h-px bg-stoa-accent"></span>
+      Features
+    </p>
+
+    <!-- Title -->
+    <h2 class="font-display font-normal text-title max-w-[480px] mb-4xl">
+      Everything you need.<br />Nothing you don't.
+    </h2>
+
+    <!-- Feature 1 — Daily Sanctuary (text left, visual right) -->
+    <div data-animate class="grid grid-cols-1 md:grid-cols-[55%_45%] gap-2xl items-center mb-4xl">
+      <div>
+        <span class="font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-accent mb-sm block">Home Screen</span>
+        <h3 class="font-body font-medium text-lg text-stoa-text mb-sm">Five tasks. That's your day.</h3>
+        <p class="font-body font-light text-[15px] leading-relaxed text-stoa-muted mb-md">
+          Every morning, Stoa asks you one question: what truly matters today? Choose up to five things. The rest waits. Your day suddenly feels possible.
+        </p>
+        <kbd class="inline-block font-mono text-mono text-stoa-muted bg-stoa-surface2 border border-stoa-border-light rounded-sm px-sm py-xs">Space &mdash; Add task</kbd>
+      </div>
+      <div class="bg-[#0D0D0D] border border-stoa-border rounded-[20px] p-lg shadow-lg">
+        <!-- Mockup: Home Screen -->
+        <div class="space-y-md">
+          <p class="font-display font-light text-[18px] text-stoa-text">Good morning, Rizky.</p>
+          <div class="space-y-sm">
+            <div class="flex items-center gap-sm py-sm border-b border-stoa-border">
+              <div class="w-4 h-4 rounded-full border border-stoa-border-light"></div>
+              <span class="font-body font-normal text-sm text-stoa-text">Revisi proposal skripsi</span>
+            </div>
+            <div class="flex items-center gap-sm py-sm border-b border-stoa-border">
+              <div class="w-4 h-4 rounded-full border border-stoa-border-light"></div>
+              <span class="font-body font-normal text-sm text-stoa-text">Design landing page</span>
+            </div>
+            <div class="flex items-center gap-sm py-sm border-b border-stoa-border">
+              <div class="w-4 h-4 rounded-full border border-stoa-border-light"></div>
+              <span class="font-body font-normal text-sm text-stoa-text">Read chapter 5</span>
+            </div>
+            <div class="flex items-center gap-sm py-sm border-b border-stoa-border">
+              <div class="w-4 h-4 rounded-full bg-stoa-accent/30 border border-stoa-accent-dim flex items-center justify-center">
+                <svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 4L3 6L7 2" stroke="#A89268" stroke-width="1.5" fill="none"/></svg>
+              </div>
+              <span class="font-body font-normal text-sm text-stoa-muted line-through">Respond to emails</span>
+            </div>
+            <div class="flex items-center gap-sm py-sm border-b border-stoa-border opacity-50">
+              <div class="w-4 h-4 rounded-full border border-stoa-border-light"></div>
+              <span class="font-body font-normal text-sm text-stoa-dim">+ Add new task...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2 — Focus Mode (visual left, text right) -->
+    <div data-animate class="grid grid-cols-1 md:grid-cols-[45%_55%] gap-2xl items-center mb-4xl">
+      <div class="md:order-2">
+        <span class="font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-accent mb-sm block">Deep Work</span>
+        <h3 class="font-body font-medium text-lg text-stoa-text mb-sm">Enter the room. Close the door.</h3>
+        <p class="font-body font-light text-[15px] leading-relaxed text-stoa-muted mb-md">
+          Activate Focus Mode and the world disappears. One task. A Pomodoro timer. No notifications. Just you and the work that matters.
+        </p>
+        <kbd class="inline-block font-mono text-mono text-stoa-muted bg-stoa-surface2 border border-stoa-border-light rounded-sm px-sm py-xs">Enter &mdash; Start focus</kbd>
+      </div>
+      <div class="md:order-1 bg-[#0D0D0D] border border-stoa-border rounded-[20px] p-lg shadow-lg">
+        <!-- Mockup: Focus Mode -->
+        <div class="text-center py-xl">
+          <p class="font-body font-medium text-lg text-stoa-text mb-md">Revisi proposal skripsi</p>
+          <p class="font-mono text-[48px] text-stoa-accent tracking-tight">24:32</p>
+          <p class="font-body font-light text-sm text-stoa-muted mt-sm">Session 2 of 4</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3 — Natural Language Input (text left, visual right) -->
+    <div data-animate class="grid grid-cols-1 md:grid-cols-[55%_45%] gap-2xl items-center mb-4xl">
+      <div>
+        <span class="font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-accent mb-sm block">Quick Capture</span>
+        <h3 class="font-body font-medium text-lg text-stoa-text mb-sm">Type like you think.</h3>
+        <p class="font-body font-light text-[15px] leading-relaxed text-stoa-muted mb-md">
+          "Revisi proposal besok jam 2 siang" — Stoa understands. Date, time, and priority parsed instantly. No menus. No friction. No lost thoughts.
+        </p>
+      </div>
+      <div class="bg-[#0D0D0D] border border-stoa-border rounded-[20px] p-lg shadow-lg">
+        <!-- Mockup: Natural Language Input -->
+        <div class="space-y-md">
+          <div class="border border-stoa-accent-dim rounded-md p-sm bg-stoa-surface2">
+            <span class="font-body font-normal text-sm text-stoa-text">Revisi proposal besok jam 2 siang</span>
+            <span class="block w-1 h-4 bg-stoa-accent inline-block ml-px animate-pulse"></span>
+          </div>
+          <div class="flex flex-wrap gap-xs">
+            <span class="px-sm py-xs rounded-full bg-stoa-accent/10 border border-stoa-accent-dim text-xs font-mono text-stoa-accent">📅 Tomorrow 2 PM</span>
+            <span class="px-sm py-xs rounded-full bg-stoa-accent/10 border border-stoa-accent-dim text-xs font-mono text-stoa-accent">⚡ High</span>
+            <span class="px-sm py-xs rounded-full bg-stoa-accent/10 border border-stoa-accent-dim text-xs font-mono text-stoa-accent">#skripsi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4 — The Vault (visual left, text right) -->
+    <div data-animate class="grid grid-cols-1 md:grid-cols-[45%_55%] gap-2xl items-center mb-4xl">
+      <div class="md:order-2">
+        <span class="font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-accent mb-sm block">Smart Backlog</span>
+        <h3 class="font-body font-medium text-lg text-stoa-text mb-sm">Everything stored. Nothing forgotten.</h3>
+        <p class="font-body font-light text-[15px] leading-relaxed text-stoa-muted mb-md">
+          Tasks not chosen for today live in The Vault — organized, searchable, sorted by energy level and deadline. Out of sight, never out of mind.
+        </p>
+        <kbd class="inline-block font-mono text-mono text-stoa-muted bg-stoa-surface2 border border-stoa-border-light rounded-sm px-sm py-xs">&#8984; V &mdash; Open Vault</kbd>
+      </div>
+      <div class="md:order-1 bg-[#0D0D0D] border border-stoa-border rounded-[20px] p-lg shadow-lg">
+        <!-- Mockup: The Vault -->
+        <div class="space-y-md">
+          <div>
+            <p class="font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-muted mb-sm">⚡ High Energy</p>
+            <div class="space-y-xs">
+              <p class="font-body font-normal text-sm text-stoa-text pl-md border-l border-stoa-accent">Prepare presentation</p>
+              <p class="font-body font-normal text-sm text-stoa-text pl-md border-l border-stoa-accent">Write project proposal</p>
+            </div>
+          </div>
+          <div>
+            <p class="font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-muted mb-sm">🌿 Medium Energy</p>
+            <div class="space-y-xs">
+              <p class="font-body font-normal text-sm text-stoa-text pl-md border-l border-stoa-success">Code review</p>
+              <p class="font-body font-normal text-sm text-stoa-muted pl-md border-l border-stoa-border line-through">Read documentation</p>
+            </div>
+          </div>
+          <div>
+            <p class="font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-muted mb-sm">🌙 Low Energy</p>
+            <div class="space-y-xs">
+              <p class="font-body font-normal text-sm text-stoa-muted pl-md border-l border-stoa-border">Organize bookmarks</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 5 — Evening Reflection (text left, visual right) -->
+    <div data-animate class="grid grid-cols-1 md:grid-cols-[55%_45%] gap-2xl items-center">
+      <div>
+        <span class="font-body font-medium text-caption uppercase tracking-[0.08em] text-stoa-accent mb-sm block">Daily Ritual</span>
+        <h3 class="font-body font-medium text-lg text-stoa-text mb-sm">End the day with intention.</h3>
+        <p class="font-body font-light text-[15px] leading-relaxed text-stoa-muted">
+          Each evening, Stoa shows you what you accomplished and asks one question. Incomplete tasks move to the Vault — no guilt, just tomorrow.
+        </p>
+      </div>
+      <div class="bg-[#0D0D0D] border border-stoa-border rounded-[20px] p-lg shadow-lg">
+        <!-- Mockup: Evening Reflection -->
+        <div class="text-center py-md">
+          <div class="relative w-24 h-24 mx-auto mb-md">
+            <svg viewBox="0 0 96 96" class="w-full h-full -rotate-90">
+              <circle cx="48" cy="48" r="40" stroke="#242424" stroke-width="4" fill="none"/>
+              <circle cx="48" cy="48" r="40" stroke="#A89268" stroke-width="4" fill="none"
+                stroke-dasharray="251.3" stroke-dashoffset="62.8" stroke-linecap="round"/>
+            </svg>
+            <span class="absolute inset-0 flex items-center justify-center font-display font-light text-xl text-stoa-text">3/5</span>
+          </div>
+          <p class="font-body font-light text-sm text-stoa-muted mb-md">How did today feel?</p>
+          <div class="flex justify-center gap-sm">
+            <span class="w-8 h-8 rounded-full bg-stoa-surface2 border border-stoa-border flex items-center justify-center text-sm cursor-default">😌</span>
+            <span class="w-8 h-8 rounded-full bg-stoa-surface2 border border-stoa-border flex items-center justify-center text-sm cursor-default">😐</span>
+            <span class="w-8 h-8 rounded-full bg-stoa-surface2 border border-stoa-border flex items-center justify-center text-sm cursor-default">😤</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
