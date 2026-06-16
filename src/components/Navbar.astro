@@ -1,5 +1,5 @@
 ---
-// Navbar.astro — Fixed top navigation with blur-on-scroll
+// Navbar.astro — Fixed top navigation with blur-on-scroll + theme toggle
 ---
 
 <header
@@ -35,26 +35,54 @@
       </a>
     </nav>
 
-    <!-- Right: CTAs (desktop) -->
-    <div class="hidden md:flex items-center gap-sm">
-      <a
-        href="#download"
-        class="text-sm font-body font-normal text-stoa-text border border-stoa-border-light rounded-full px-md py-2 hover:border-stoa-accent-dim hover:text-stoa-accent transition-all duration-200"
+    <!-- Right: Theme toggle + CTAs (desktop) -->
+    <div class="flex items-center gap-sm">
+      <!-- Theme Toggle -->
+      <button
+        id="theme-toggle"
+        class="p-2 rounded-full text-stoa-muted hover:text-stoa-text transition-colors duration-150"
+        aria-label="Toggle theme"
+        title="Toggle light/dark mode"
       >
-        Sign up for early access
-      </a>
-      <a
-        href="#download"
-        class="text-sm font-body font-medium bg-stoa-accent text-stoa-bg rounded-full px-lg py-2 hover:brightness-110 hover:-translate-y-px transition-all duration-200"
-      >
-        Download for free
-      </a>
+        <!-- Sun icon (shown in dark mode) -->
+        <svg id="theme-icon-sun" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg id="theme-icon-moon" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Desktop CTAs -->
+      <span class="hidden md:flex items-center gap-sm">
+        <a
+          href="#download"
+          class="text-sm font-body font-normal text-stoa-text border border-stoa-border-light rounded-full px-md py-2 hover:border-stoa-accent-dim hover:text-stoa-accent transition-all duration-200"
+        >
+          Sign up for early access
+        </a>
+        <a
+          href="#download"
+          class="text-sm font-body font-medium bg-stoa-accent text-stoa-bg rounded-full px-lg py-2 hover:brightness-110 hover:-translate-y-px transition-all duration-200"
+        >
+          Download for free
+        </a>
+      </span>
     </div>
 
     <!-- Mobile: Hamburger button -->
     <button
       id="hamburger"
-      class="md:hidden flex flex-col gap-1.5 p-2"
+      class="md:hidden flex flex-col gap-1.5 p-2 ml-sm"
       aria-label="Toggle menu"
     >
       <span class="block w-5 h-px bg-stoa-text transition-transform duration-200"></span>
@@ -91,26 +119,36 @@
   </div>
 </header>
 
+<style>
+  #navbar.scrolled {
+    background: var(--color-stoa-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--color-stoa-border);
+  }
+
+  @supports (background: color-mix(in srgb, var(--color-stoa-bg) 85%, transparent)) {
+    #navbar.scrolled {
+      background: color-mix(in srgb, var(--color-stoa-bg) 85%, transparent);
+    }
+  }
+</style>
+
 <script>
   const navbar = document.getElementById('navbar')!;
   const hamburger = document.getElementById('hamburger')!;
   const menu = document.getElementById('mobile-menu')!;
   let menuOpen = false;
 
-  // Scroll blur
-  window.addEventListener('scroll', () => {
+  function updateNavScroll() {
     if (window.scrollY > 20) {
-      navbar.style.background = 'rgba(8, 8, 8, 0.85)';
-      navbar.style.backdropFilter = 'blur(20px) saturate(180%)';
-      navbar.style.borderBottom = '1px solid var(--color-stoa-border)';
+      navbar.classList.add('scrolled');
     } else {
-      navbar.style.background = 'transparent';
-      navbar.style.backdropFilter = 'none';
-      navbar.style.borderBottom = 'none';
+      navbar.classList.remove('scrolled');
     }
-  }, { passive: true });
+  }
+  window.addEventListener('scroll', updateNavScroll, { passive: true });
+  updateNavScroll();
 
-  // Mobile menu toggle
   hamburger.addEventListener('click', () => {
     menuOpen = !menuOpen;
     menu.classList.toggle('hidden', !menuOpen);
@@ -118,7 +156,6 @@
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   });
 
-  // Close menu on link click
   menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       menuOpen = false;
@@ -126,5 +163,40 @@
       menu.classList.remove('flex');
       document.body.style.overflow = '';
     });
+  });
+
+  const themeToggle = document.getElementById('theme-toggle')!;
+  const sunIcon = document.getElementById('theme-icon-sun')!;
+  const moonIcon = document.getElementById('theme-icon-moon')!;
+
+  function getTheme(): string {
+    const stored = localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') return stored;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function setTheme(theme: string) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    if (theme === 'light') {
+      sunIcon.classList.add('hidden');
+      moonIcon.classList.remove('hidden');
+    } else {
+      sunIcon.classList.remove('hidden');
+      moonIcon.classList.add('hidden');
+    }
+  }
+
+  setTheme(getTheme());
+
+  themeToggle.addEventListener('click', () => {
+    const current = getTheme();
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      setTheme(e.matches ? 'light' : 'dark');
+    }
   });
 </script>

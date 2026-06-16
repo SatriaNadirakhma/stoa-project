@@ -22,6 +22,17 @@ const {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#080808" />
 
+    <!-- Blocking theme detection: prevents flash of wrong theme -->
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'light' ? '#FAF8F4' : '#080808');
+      })();
+    </script>
+
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
