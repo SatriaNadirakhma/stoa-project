@@ -1,1 +1,243 @@
+/* === STOA FONT IMPORTS (must be before all rules) === */
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+
 @import "tailwindcss";
+
+@theme {
+  /* === STOA COLOR TOKENS === */
+  --color-stoa-bg: #080808;
+  --color-stoa-surface: #111111;
+  --color-stoa-surface2: #1A1A1A;
+  --color-stoa-border: #242424;
+  --color-stoa-border-light: #2E2E2E;
+  --color-stoa-text: #F0EDE6;
+  --color-stoa-muted: #7A7773;
+  --color-stoa-dim: #3D3B38;
+  --color-stoa-accent: #A89268;
+  --color-stoa-accent-dim: #6B5E42;
+  --color-stoa-success: #6B8F71;
+
+  /* === FONT FAMILIES === */
+  --font-display: 'Stack Sans Headline', sans-serif;
+  --font-body: 'Stack Sans Headline', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* === TYPE SCALE === */
+  --text-display: clamp(56px, 8vw, 96px);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.04em;
+  --text-display--font-weight: 300;
+
+  --text-title: clamp(36px, 5vw, 60px);
+  --text-title--line-height: 1.05;
+  --text-title--letter-spacing: -0.03em;
+  --text-title--font-weight: 400;
+
+  --text-lead: clamp(18px, 2vw, 22px);
+  --text-lead--line-height: 1.6;
+  --text-lead--letter-spacing: -0.01em;
+  --text-lead--font-weight: 300;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.7;
+  --text-body-lg--font-weight: 300;
+
+  --text-caption: 12px;
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.08em;
+  --text-caption--font-weight: 500;
+
+  --text-mono: 13px;
+  --text-mono--line-height: 1.5;
+  --text-mono--font-weight: 400;
+
+  /* === SPACING === */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 64px;
+  --spacing-3xl: 96px;
+  --spacing-4xl: 128px;
+  --spacing-5xl: 192px;
+
+  /* === BORDER RADIUS === */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+
+  /* === CUSTOM ANIMATIONS === */
+  --animate-fade-up: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-pulse-once: pulseOnce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-breathe: breathe 4s ease-in-out infinite;
+}
+
+/* === CUSTOM CSS PROPERTIES (non-Tailwind) === */
+:root {
+  --color-accent-glow: rgba(168, 146, 104, 0.12);
+  --color-accent: #A89268;
+
+  --container-max: 1120px;
+  --container-padding: clamp(24px, 5vw, 80px);
+  --section-gap: clamp(96px, 12vw, 160px);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --duration-fast: 150ms;
+  --duration-default: 300ms;
+  --duration-slow: 600ms;
+  --duration-slower: 1000ms;
+}
+
+/* === KEYFRAMES === */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseOnce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.22;
+  }
+}
+
+/* === SCROLL-TRIGGERED ANIMATION === */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-out-expo),
+              transform var(--duration-slow) var(--ease-out-expo);
+}
+
+[data-animate].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children of a container */
+[data-animate-stagger] > [data-animate].revealed {
+  transition-delay: calc(var(--animate-delay, 0) * 1ms);
+}
+
+/* === BASE RESET === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  background-color: var(--color-stoa-bg);
+  color: var(--color-stoa-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-stoa-bg);
+  color: var(--color-stoa-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-stoa-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-stoa-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-stoa-border-light);
+}
+
+/* === SELECTION === */
+::selection {
+  background: rgba(168, 146, 104, 0.3);
+  color: var(--color-stoa-text);
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* === UTILITY LAYERS === */
+@layer utilities {
+  .container-stoa {
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+  }
+
+  .section-gap {
+    padding-block: var(--section-gap);
+  }
+
+  .border-default {
+    border: 1px solid var(--color-stoa-border);
+  }
+
+  .border-accent {
+    border: 1px solid var(--color-stoa-accent-dim);
+  }
+}
